@@ -1,0 +1,20 @@
+version: '3'
+services:
+  helios:
+    container_name: helios
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    tty: true
+
+  mysql:
+    container_name: helios-mysql
+    image: mysql:5.6.26
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'helios'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql-volume:/var/lib/mysql

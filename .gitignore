@@ -1,0 +1,10 @@
+# global ignores
+*.log
+
+# environment ignores
+.DS_Store
+
+# application ignores
+config.yml
+/docker/mysql-volume
+/vendor
