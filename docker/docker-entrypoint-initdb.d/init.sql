@@ -7,12 +7,12 @@ CREATE TABLE `accounts` (
   KEY `idx_username` (`username`)
 );
 
-INSERT INTO `accounts`
-VALUES (1, 'justinbieber');
+INSERT INTO `accounts` (`account_id`, `username`) VALUES (1, 'justinbieber');
+INSERT INTO `accounts` (`account_id`, `username`) VALUES (2, 'taylorswift');
 
 CREATE TABLE `account_follower_counts` (
   `account_id` int(11) unsigned NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `follower_count` int(11) unsigned NOT NULL,
   `following_count` int(11) unsigned NOT NULL,
   `post_count` int(11) unsigned NOT NULL,

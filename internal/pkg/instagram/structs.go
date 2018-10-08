@@ -25,8 +25,8 @@ type profilePage struct {
 // EdgeUser : user object
 type edgeUser struct {
 	EdgeFollowedBy           edgeFollowedBy           `json:"edge_followed_by"`
+	EdgeFollow               edgeFollow               `json:"edge_follow"`
 	ProfilePicURLHd          string                   `json:"profile_pic_url_hd"`
-	RequestedByViewer        bool                     `json:"requested_by_viewer"`
 	Username                 string                   `json:"username"`
 	ConnectedFbPage          interface{}              `json:"connected_fb_page"`
 	EdgeOwnerToTimelineMedia edgeOwnerToTimelineMedia `json:"edge_owner_to_timeline_media"`
@@ -34,6 +34,11 @@ type edgeUser struct {
 
 // EdgeFollowedBy : followed by object
 type edgeFollowedBy struct {
+	Count int `json:"count"`
+}
+
+// EdgeFollowedBy : following object
+type edgeFollow struct {
 	Count int `json:"count"`
 }
 

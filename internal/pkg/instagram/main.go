@@ -11,31 +11,32 @@ import (
 )
 
 // Init : Start instagram scraping job
-func Init(username string) {
-	scrapeUser(username)
+func Init(id int, username string) {
+	instagramUser := scrapeUser(username)
+	insertData(id, instagramUser)
 }
 
 // ScrapeUser : requests instagram user page and store results
-func scrapeUser(username string) {
+func scrapeUser(username string) instagram {
 	url := fmt.Sprintf("http://instagram.com/%s", username)
 	body := requestHTML(url)
 	data := parseHTML(body)
 	instagramUser := instagram{}
 
 	json.Unmarshal(data, &instagramUser)
-	insertData(instagramUser)
+	return instagramUser
 }
 
 // ScrapeMedia : requests instagram user page and store results
-func scrapeMedia(mediaID string) {
-	url := fmt.Sprintf("http://instagram.com/p/%s", mediaID)
-	body := requestHTML(url)
-	data := parseHTML(body)
-	instagramMedia := instagram{}
-
-	json.Unmarshal(data, &instagramMedia)
-	insertData(instagramMedia)
-}
+// func scrapeMedia(mediaID string) {
+// 	url := fmt.Sprintf("http://instagram.com/p/%s", mediaID)
+// 	body := requestHTML(url)
+// 	data := parseHTML(body)
+// 	instagramMedia := instagram{}
+//
+// 	json.Unmarshal(data, &instagramMedia)
+// 	insertData(instagramMedia)
+// }
 
 func requestHTML(url string) io.ReadCloser {
 	response, err := http.Get(url)

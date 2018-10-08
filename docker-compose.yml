@@ -5,11 +5,13 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    tty: true
+    depends_on:
+      - mysql
 
   mysql:
+    user: "1000:50"
     container_name: helios-mysql
-    image: mysql:5.6.26
+    image: mysql:latest
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: 'helios'
